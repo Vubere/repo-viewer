@@ -1,0 +1,76 @@
+@import url('./_navbar.css');
+@import url('./_repos.css');
+
+
+*{
+  border: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+::-webkit-scrollbar{
+  display: none;
+}
+
+.App{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.App::-webkit-scrollbar{
+  display: none;
+}
+.App::-webkit-scrollbar-thumb{
+  display: inline-block;
+  width: 3px;
+  border-radius: 1.5px;
+  height: 10px;
+}
+
+main.main{
+  width: 100%;
+  margin-top: 40px;
+  padding: 20px;
+}
+main.main img{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid #3334;
+  display: flex;
+  justify-content: center;
+}
+main.main article{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+}
+main.main article p{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+main.main aside{
+  width: 200px;
+  height: 30px;
+  padding: 20px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #7775;
+  box-shadow: 1px 1px 1px 1px #5558;
+}
+main.main aside:active{
+  scale: 0.9 0.9;
+}
+main.main aside a{
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
