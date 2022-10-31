@@ -11,32 +11,28 @@ export const PaginationContext = createContext();
 export default function Repos() {
   const [currentPage, setCurrentPage] = useState(1);
   const { userRepoDetails } = useContext(AppContext);
- 
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    navigate(`/repositories/page/${currentPage}`);
-  }, [currentPage]);
 
   return (
-    <PaginationContext.Provider
-      value={{
-        length: userRepoDetails.length,
-        userRepoDetails,
-        itemsPerPage: 2,
-        currentPage: currentPage,
-        setCurrentPage: setCurrentPage,
-      }}
-    >
+    <section className="repos">
       {userRepoDetails.length ? (
-        <section className="repos">
+        <PaginationContext.Provider
+          value={{
+            length: userRepoDetails.length,
+            userRepoDetails,
+            itemsPerPage: 2,
+            currentPage: currentPage,
+            setCurrentPage: setCurrentPage,
+          }}
+        >
           <header>
             <h2>Repositories</h2>
           </header>
           <Outlet />
-        </section>
-      ) : null}
-    </PaginationContext.Provider>
+        </PaginationContext.Provider>
+      ) : (
+        <div>can't find repositories</div>
+      )}
+    </section>
   );
 }

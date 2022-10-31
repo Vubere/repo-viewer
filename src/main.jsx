@@ -12,6 +12,7 @@ const Main = lazy(() => import("./Pages/Home"));
 const Repos = lazy(() => import("./Pages/Repos"));
 const RepoPaginated = lazy(() => import("./Components/ReposPaginated"));
 const RepoPage = lazy(() => import("./Pages/RepoPage"));
+const RepoIndex = lazy(()=> import("./Components/RepoIndex"))
 
 const PageNotFound = lazy(() => import("./PageNotFound"));
 
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               <Route index element={<Main />} />
               <Route path="*" element={<PageNotFound />} />
               <Route path="/repositories" element={<Repos />}>
+                <Route index element={<RepoIndex/>}/>
                 <Route path="page/:page" element={<RepoPaginated />} />
                 <Route path=":reponame" element={<RepoPage />} />
               </Route>

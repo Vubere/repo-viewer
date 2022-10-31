@@ -14,7 +14,7 @@ export default function RepoPaginated(){
   const startIndex = (Number(page)*itemsPerPage)-itemsPerPage
   const endIndex = Number(page)*itemsPerPage
   console.log(startIndex, endIndex, page)
-
+  
   if(page==null||page==undefined){
     navigate('/')
   }

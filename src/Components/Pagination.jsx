@@ -1,68 +1,75 @@
 import { useContext, useEffect, useState } from "react";
 
+import { Link } from "react-router-dom";
+
 import { PaginationContext } from "../Pages/Repos";
 
+export default function Paginations() {
+  const [paginatedArr, setPaginatedArr] = useState([]);
+  const { length, itemsPerPage, currentPage, setCurrentPage } =
+    useContext(PaginationContext);
+  const pageNum = Math.ceil(length / itemsPerPage)
 
-
-export default function Paginations(){
-
-  const [paginatedArr, setPaginatedArr] = useState([])
-  const {length, itemsPerPage, currentPage,setCurrentPage} = useContext(PaginationContext)
-
-
-
-  useEffect(()=>{
-    setPaginatedArr(paginationFuntion(length, itemsPerPage, currentPage))
-  },[currentPage])
+  useEffect(() => {
+    setPaginatedArr(paginationFuntion(length, itemsPerPage, currentPage));
+  }, [currentPage]);
 
   const changePage = (num) => {
-    if(!Number(num)) return
-    setCurrentPage(num)
-  }
+    if (!Number(num)) return;
+    setCurrentPage(num);
+  };
   const prev = (currentPage) => {
-    if(currentPage===1) return
-    else setCurrentPage(currentPage-1)
-  }
-  console.log(length)
+    if (currentPage === 1) return currentPage;
+    else setCurrentPage(currentPage - 1);
+  };
+
   const next = (currentPage) => {
-    if (currentPage === Math.ceil(length / itemsPerPage)) return;
-    else setCurrentPage(currentPage + 1);
-  }
-  
+    if (currentPage === pageNum) return;
+    setCurrentPage(currentPage + 1);
+  };
+
   return (
     <div>
-      <button onClick={() => prev(currentPage)} disabled={currentPage === 1}>
-        prev
-      </button>
+      <button disabled={currentPage === 1}
+      onClick = {()=>prev(currentPage)}>
+        <Link
+          to={`/repositories/page/${
+            currentPage != 1 ? currentPage - 1 : currentPage
+          }`}
+        >
+          prev
+        </Link>
+       </button>
       {paginatedArr.map((num) => {
         return (
           <button
-          key={num}
             onClick={() => changePage(num)}
             disabled={num === currentPage}
           >
-            {num}
+            <Link to={`/repositories/page/${num}`} key={num}>
+              {num}
+            </Link>
           </button>
         );
       })}
-      <button
-        onClick={() => next(currentPage)}
-        disabled={currentPage === Math.ceil(length / itemsPerPage)}
-      >
-        next
+      <button disabled={currentPage === pageNum}
+      onClick={()=>next(currentPage)}>
+        <Link
+          to={`/repositories/page/${
+            currentPage < pageNum?
+             currentPage + 1
+              : currentPage
+          }`}
+        >
+          next
+        </Link>
       </button>
     </div>
   );
 }
 
-
-
-
-
-
 //for paginations
 const paginationFuntion = (length, itemsPerPage, currentPage) => {
-  console.log(length, itemsPerPage,currentPage)
   const pages = Math.ceil(length / itemsPerPage);
   return setPaginationNumbers(currentPage, pages);
 };
