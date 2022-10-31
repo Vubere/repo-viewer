@@ -1,4 +1,12 @@
-export default function RepoDisplay({ repoDetails }) {
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+
+import { PaginationContext } from "../Pages/Repos";
+
+export default function RepoDisplay({ repoDetails, index }) {
+  
+  
+
   return (
     <article className="repoDisplay">
       <header>
@@ -18,6 +26,9 @@ export default function RepoDisplay({ repoDetails }) {
         <p>Last Updated: {repoDetails.updated_at}</p>
         <p>Description: {repoDetails.description}</p>
       </main>
+      <footer>
+        <Link to={`/repositories/${repoDetails.name}`} >Go to Repo Page</Link>
+      </footer>
     </article>
   );
 }

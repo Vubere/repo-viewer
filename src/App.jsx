@@ -14,6 +14,7 @@ export const AppContext = createContext();
 function App() {
   const [userDetails, setUserDetails] = useState({});
   const [userRepoDetails, setUserRepoDetails] = useState({});
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -25,6 +26,7 @@ function App() {
         const repoData = await res2.json();
         setUserDetails(userData);
         setUserRepoDetails(repoData);
+        setLoading(false)
       } catch ({ message }) {
         setError(message);
       }
@@ -32,10 +34,17 @@ function App() {
   }, []);
 
   return (
+
     <AppContext.Provider value={{ userDetails, userRepoDetails }}>
       <main className="App">
         <Navbar />
-        <Outlet />
+        {
+          !loading?
+          error==''?
+          <Outlet />:
+          <div>data fetch failed check your internet connection and try again</div>
+        :<div>loading...</div>
+      }
       </main>
     </AppContext.Provider>
   );

@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
+import { PaginationContext } from "../Pages/Repos";
 
 
 
-
-
-export default function Paginations({length, itemsPerPage=3, currentPage, setCurrentPage}){
+export default function Paginations(){
 
   const [paginatedArr, setPaginatedArr] = useState([])
+  const {length, itemsPerPage, currentPage,setCurrentPage} = useContext(PaginationContext)
+
+
 
   useEffect(()=>{
     setPaginatedArr(paginationFuntion(length, itemsPerPage, currentPage))
@@ -16,15 +19,40 @@ export default function Paginations({length, itemsPerPage=3, currentPage, setCur
     if(!Number(num)) return
     setCurrentPage(num)
   }
-
+  const prev = (currentPage) => {
+    if(currentPage===1) return
+    else setCurrentPage(currentPage-1)
+  }
+  console.log(length)
+  const next = (currentPage) => {
+    if (currentPage === Math.ceil(length / itemsPerPage)) return;
+    else setCurrentPage(currentPage + 1);
+  }
+  
   return (
     <div>
-      {paginatedArr.map((num)=>{
-        return <button onClick={()=>changePage(num)}
-        disabled={num===currentPage}>{num}</button>
+      <button onClick={() => prev(currentPage)} disabled={currentPage === 1}>
+        prev
+      </button>
+      {paginatedArr.map((num) => {
+        return (
+          <button
+          key={num}
+            onClick={() => changePage(num)}
+            disabled={num === currentPage}
+          >
+            {num}
+          </button>
+        );
       })}
+      <button
+        onClick={() => next(currentPage)}
+        disabled={currentPage === Math.ceil(length / itemsPerPage)}
+      >
+        next
+      </button>
     </div>
-  )
+  );
 }
 
 
@@ -34,6 +62,7 @@ export default function Paginations({length, itemsPerPage=3, currentPage, setCur
 
 //for paginations
 const paginationFuntion = (length, itemsPerPage, currentPage) => {
+  console.log(length, itemsPerPage,currentPage)
   const pages = Math.ceil(length / itemsPerPage);
   return setPaginationNumbers(currentPage, pages);
 };

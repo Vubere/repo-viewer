@@ -17,19 +17,18 @@ export default function Main() {
             <p>
               <span>Welcome, my name is</span>{" "}
               <span>{userDetails.name.toUpperCase()}.</span>{" "}
-              <span>I am a frontend web developer.</span>{" "}
+              <span>I am a {userDetails.bio}.</span>{" "}
+              <span>I am based in {userDetails.location}.</span>{' '}
               <span>
                 I build web apps using React, Redux, TypeScript, Javascript,
                 SASS, CSS and HTML5.{" "}
               </span>
-                <span>
-                  Hit the link below to see a list of my github repos.
-                </span>
+              <span>Hit the link below to see a list of my github repositories.</span>
             </p>
           </article>
-          <aside>
-            <Link to="./repos">Github Repositories</Link>
-          </aside>
+          <Link to="/repositories">
+            <aside>Github Repositories</aside>
+          </Link>
         </>
       </main>
     )

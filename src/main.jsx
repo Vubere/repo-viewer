@@ -9,9 +9,11 @@ import ErrorBoundary from "./ErrorBoundary";
 
 const App = lazy(() => import("./App"));
 const Main = lazy(() => import("./Pages/Home"));
-const Repos = lazy(()=>import('./Pages/Repos'))
+const Repos = lazy(() => import("./Pages/Repos"));
+const RepoPaginated = lazy(() => import("./Components/ReposPaginated"));
+const RepoPage = lazy(() => import("./Pages/RepoPage"));
 
-const PageNotFound = lazy(()=>import('./PageNotFound'))
+const PageNotFound = lazy(() => import("./PageNotFound"));
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -21,8 +23,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Routes>
             <Route pathName="/" element={<App />}>
               <Route index element={<Main />} />
-              <Route path="*" element={<PageNotFound/>}/>
-              <Route path='/repos' element={<Repos/>}/>
+              <Route path="*" element={<PageNotFound />} />
+              <Route path="/repositories" element={<Repos />}>
+                <Route path="page/:page" element={<RepoPaginated />} />
+                <Route path=":reponame" element={<RepoPage />} />
+              </Route>
             </Route>
           </Routes>
         </BrowserRouter>
