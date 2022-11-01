@@ -1,12 +1,17 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 
 import { AppContext } from "../App";
 
+
+
 export default function Main() {
   const { userDetails } = useContext(AppContext);
-  console.log(userDetails);
+  
+  useEffect(()=>{
+    document.title = "repository list app"
+  },[])
 
   return (
     userDetails?.name && (
@@ -15,15 +20,14 @@ export default function Main() {
           <article className="">
             <img src={userDetails.avatar_url} alt="" />
             <p>
-              <span>Welcome, my name is</span>{" "}
-              <span>{userDetails.name.toUpperCase()}.</span>{" "}
-              <span>I am a {userDetails.bio}.</span>{" "}
-              <span>I am based in {userDetails.location}.</span>{' '}
+              <span className="name">{userDetails.name.toUpperCase()}</span>{" "}
+              <span>{userDetails.bio}.</span>{" "}
+              <span>Based in {userDetails.location}.</span>{' '}
               <span>
-                I build web apps using React, Redux, TypeScript, Javascript,
+                Builds web apps using React, Redux, TypeScript, Javascript,
                 SASS, CSS and HTML5.{" "}
               </span>
-              <span>Hit the link below to see a list of my github repositories.</span>
+              <span>Hit the link below to see a list of his github repositories.</span>
             </p>
           </article>
           <Link to="/repositories">

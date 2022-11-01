@@ -11,66 +11,128 @@
 ::-webkit-scrollbar{
   display: none;
 }
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 .App{
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
 }
 .App::-webkit-scrollbar{
   display: none;
 }
-.App::-webkit-scrollbar-thumb{
-  display: inline-block;
-  width: 3px;
-  border-radius: 1.5px;
-  height: 10px;
-}
 
 main.main{
-  width: 100%;
-  margin-top: 40px;
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
-main.main img{
+.main article{
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.main article img{
   width: 200px;
-  height: 200px;
   border-radius: 50%;
-  border: 1px solid #3334;
-  display: flex;
-  justify-content: center;
 }
-main.main article{
+.main article>p{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: justify;
+  line-height: 140%;
 }
-main.main article p{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+.name{
+  font-weight: 1000;
+  font-size: 1.5em;
+  color: #0009;
 }
-main.main aside{
-  width: 200px;
-  height: 30px;
-  padding: 20px;
-  text-align: center;
-  margin: 0 auto;
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #7775;
-  box-shadow: 1px 1px 1px 1px #5558;
+.main article>p span{
+  padding-left: 5px;
+  text-align: start;
+  color: grey;
 }
-main.main aside:active{
-  scale: 0.9 0.9;
+@media screen and (max-width:600px) {
+  .main article{
+    flex-direction: column;
+  }
+  .main article img{
+    margin: 10px;
+  }
+  .main article>p{
+    align-items: center;
+  }
+  .main article>p span{
+    text-align: center;
+  }
+ 
 }
-main.main aside a{
+.main a{
   text-decoration: none;
-  color: black;
-  text-align: center;
+  width: 180px;
+  height: 45px;
+  border-radius: 18px;
+  color: white;
+  display: flex;
+  align-items: center;
+  background-color: #3338;
+  justify-content: center;
+  border: 1px solid #3335;
+}
+.main a:active{
+  scale: 0.95 0.95;
+  background-color: #333;
+}
+.main a:hover{
+  background-color: #333a;
+  scale: 1.05 1.05;
+}
+
+
+
+
+
+
+@keyframes loading {
+  0%{
+    scale: 0.9 0.9;
+  }
+  20%{
+    scale: 0.8 0.8;
+  }
+  40%{
+    scale: 0.75 0.75;
+  }
+  50%{
+    scale: 0.8 0.8;
+  }
+  70%{
+    scale: 0.9 0.9;
+  }
+  90%{
+    scale: 0.95 0.95;
+  }
+  100%{
+    scale: 1 1;
+  }
+}
+.loading{
+  width: 100vw;
+  height: 70vh;
+  display: inline-grid;
+  place-items: center;
+}
+.loading img{
+  width: 40px;
+  height: 40px;
+  animation-name: loading;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
 }

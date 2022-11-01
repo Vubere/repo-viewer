@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { PaginationContext } from "../Pages/Repos";
 
+
 export default function Paginations() {
   const [paginatedArr, setPaginatedArr] = useState([]);
   const { length, itemsPerPage, currentPage, setCurrentPage } =
@@ -29,7 +30,7 @@ export default function Paginations() {
   };
 
   return (
-    <div>
+    <section className="pagination" aria-label="pagination">
       <button disabled={currentPage === 1}
       onClick = {()=>prev(currentPage)}>
         <Link
@@ -45,10 +46,9 @@ export default function Paginations() {
           <button
             onClick={() => changePage(num)}
             disabled={num === currentPage}
+            key={num}
           >
-            <Link to={`/repositories/page/${num}`} key={num}>
-              {num}
-            </Link>
+            <Link to={`/repositories/page/${num}`}>{num}</Link>
           </button>
         );
       })}
@@ -64,7 +64,7 @@ export default function Paginations() {
           next
         </Link>
       </button>
-    </div>
+    </section>
   );
 }
 

@@ -21,10 +21,11 @@ class ErrorBoundary extends React.Component{
   }
   goBackToHome(){
     window.location.replace(window.location.origin)
-    
-
   }
+ 
+  
   render(){
+    document.title = 'error'
     const {error} = this.state
     return error?(
       <section className="errorPage">

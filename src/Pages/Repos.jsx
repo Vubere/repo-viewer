@@ -1,10 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import RepoDisplay from "../Components/RepoDisplay";
-
 import { AppContext } from "../App";
 
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 export const PaginationContext = createContext();
 
@@ -12,6 +10,9 @@ export default function Repos() {
   const [currentPage, setCurrentPage] = useState(1);
   const { userRepoDetails } = useContext(AppContext);
 
+  useEffect(() => {
+    document.title = "repository list display";
+  }, []);
 
   return (
     <section className="repos">
@@ -28,7 +29,9 @@ export default function Repos() {
           <header>
             <h2>Repositories</h2>
           </header>
-          <Outlet />
+          <main>
+            <Outlet />
+          </main>
         </PaginationContext.Provider>
       ) : (
         <div>can't find repositories</div>

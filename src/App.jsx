@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 
 //components
 import Navbar from "./Components/Navbar";
+import Loading from "./Components/Loading";
 
 //styles
 import "./Styles/main.css";
@@ -22,6 +23,7 @@ function App() {
       try {
         const res = await fetch("https://api.github.com/users/vubere");
         const userData = await res.json();
+        
         const res2 = await fetch(userData.repos_url);
         const repoData = await res2.json();
         setUserDetails(userData);
@@ -34,8 +36,11 @@ function App() {
   }, []);
 
   return (
+    <>
+    {
+      error==''?
 
-    <AppContext.Provider value={{ userDetails, userRepoDetails }}>
+      <AppContext.Provider value={{ userDetails, userRepoDetails }}>
       <main className="App">
         <Navbar />
         {
@@ -43,10 +48,12 @@ function App() {
           error==''?
           <Outlet />:
           <div>data fetch failed check your internet connection and try again</div>
-        :<div>loading...</div>
-      }
+          :<Loading/>
+        }
       </main>
-    </AppContext.Provider>
+    </AppContext.Provider>:<div>{error}</div>
+  }
+        </>
   );
 }
 

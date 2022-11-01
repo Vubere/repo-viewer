@@ -9,8 +9,7 @@ export default function RepoIndex(){
     navigate('/repositories/page/1')
   },[])
   return (
-    <div>
-
-    </div>
+    <>
+    </>
   )
 }
