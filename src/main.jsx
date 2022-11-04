@@ -7,13 +7,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 //components
 import ErrorBoundary from "./Pages/ErrorBoundary";
 import Loading from "./Components/Loading";
+import RepoIndex from "./Components/RepoIndex"
 
 const App = lazy(() => import("./App"));
 const Main = lazy(() => import("./Pages/Home"));
 const Repos = lazy(() => import("./Pages/Repos"));
 const RepoPaginated = lazy(() => import("./Components/ReposPaginated"));
 const RepoPage = lazy(() => import("./Pages/RepoPage"));
-const RepoIndex = lazy(()=> import("./Components/RepoIndex"))
+
 
 const PageNotFound = lazy(() => import("./Pages/PageNotFound"));
 
