@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { pageIndex } from "../helper/pageIndexStore";
 
+
 export default function RepoDisplay({ repoDetails, index }) {
   return (
     <article className="repoDisplay">
       <header>
         <h1>{repoDetails.full_name}</h1>
         <p className="desc"> {repoDetails.description}</p>
-        <p>By: {repoDetails.owner.login}</p>
       </header>
       <main className="repoMain">
         <p className="visibility">{repoDetails.visibility}</p>
@@ -19,7 +19,7 @@ export default function RepoDisplay({ repoDetails, index }) {
       <footer>
         <Link
           to={`/repositories/${repoDetails.name}`}
-          onClick={() => (pageIndex.page = index)}
+          onClick={() => (pageIndex.item = index)}
         >
           View Repository
         </Link>

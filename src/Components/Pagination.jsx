@@ -11,6 +11,7 @@ export default function Paginations() {
     useContext(PaginationContext);
   const pageNum = Math.ceil(length / itemsPerPage)
 
+  console.log(currentPage, paginatedArr)
   useEffect(() => {
     setPaginatedArr(paginationFuntion(length, itemsPerPage, currentPage));
   }, [currentPage]);

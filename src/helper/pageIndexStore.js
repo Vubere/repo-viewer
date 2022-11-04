@@ -1,3 +1,3 @@
 export const pageIndex = {
-  index: 1
+  item: 1
 }
