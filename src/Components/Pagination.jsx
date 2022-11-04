@@ -32,13 +32,14 @@ export default function Paginations() {
   return (
     <section className="pagination" aria-label="pagination">
       <button disabled={currentPage === 1}
-      onClick = {()=>prev(currentPage)}>
+      onClick = {()=>prev(currentPage)}
+      className={currentPage===1?'curButton':''}>
         <Link
           to={`/repositories/page/${
             currentPage != 1 ? currentPage - 1 : currentPage
           }`}
         >
-          prev
+          &lt;
         </Link>
        </button>
       {paginatedArr.map((num) => {
@@ -47,13 +48,15 @@ export default function Paginations() {
             onClick={() => changePage(num)}
             disabled={num === currentPage}
             key={num}
+            className={num === currentPage?'curButton': ''}
           >
             <Link to={`/repositories/page/${num}`}>{num}</Link>
           </button>
         );
       })}
       <button disabled={currentPage === pageNum}
-      onClick={()=>next(currentPage)}>
+      onClick={()=>next(currentPage)}
+      className={currentPage === pageNum? 'curButton':''}>
         <Link
           to={`/repositories/page/${
             currentPage < pageNum?
@@ -61,7 +64,7 @@ export default function Paginations() {
               : currentPage
           }`}
         >
-          next
+          &gt;
         </Link>
       </button>
     </section>

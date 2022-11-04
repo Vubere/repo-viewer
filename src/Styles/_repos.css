@@ -1,7 +1,6 @@
 section.repos{
   margin-top: 10px;
-  overflow: auto;
-  height: calc(100% - 40px);
+  position: relative;
   padding: 20px;
   display: flex;
   align-items: center;
@@ -10,6 +9,13 @@ section.repos{
 }
 section.repos header{
   color: #685d5d;
+}
+section.repos .back{
+  position: absolute;
+  left: 10px;
+  top: 20px;
+  height: 20px;
+  width: 40px;
 }
 
 article.repoDisplay{
@@ -68,6 +74,12 @@ article.repoDisplay footer a{
   text-decoration: none;
   background-color: grey;
 }
+article.repoDisplay footer a:hover {
+  scale: 1.1 1.1;
+}
+article.repoDisplay footer a:active {
+  scale: 0.9 0.9;
+}
 .visibility{
   position: absolute;
   right: 10px;
@@ -81,22 +93,22 @@ article.repoDisplay footer a{
   z-index: 10;
 }
 .pagination{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 15% 15% 15% 15% 15% 15% 15% 15%;
+  grid-template-rows: 35px;
   padding: 10px;
   justify-content: space-around;
-  width: 80vw;
+  width: 90vw;
   max-width: 250px;
   margin: 0 auto;
 }
 .pagination a{
   text-decoration: none;
   color: black;
-  width: 35px;
-  height: 35px;
+ 
   display: grid;
   place-items: center;
+  color: white;
 }
 .pagination button{
   border-radius: 7px;
@@ -104,6 +116,10 @@ article.repoDisplay footer a{
   display: grid;
   border: 1px solid #3338;
   place-items: center;
+  background-color: #3338;
+}
+.pagination .curButton{
+  background-color: #3332;
 }
 @media screen and (min-width: 900px) {
   section.repoWindow main{
